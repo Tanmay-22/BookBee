@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { booksAPI, reviewsAPI } from '../utils/api';
+import RatingChart from '../components/RatingChart';
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -133,17 +134,20 @@ const BookDetails = () => {
             {reviews.length === 0 ? (
               <p className="text-muted">No reviews yet.</p>
             ) : (
-              reviews.map((review) => (
-                <div key={review._id} className="border-bottom pb-3 mb-3">
-                  <div className="d-flex justify-content-between align-items-start mb-2">
-                    <div>
-                      <span className="fw-bold">{review.userId.name}</span>
-                      <span className="ms-2 text-warning">{'★'.repeat(review.rating)}</span>
+              <>
+                {reviews.map((review) => (
+                  <div key={review._id} className="border-bottom pb-3 mb-3">
+                    <div className="d-flex justify-content-between align-items-start mb-2">
+                      <div>
+                        <span className="fw-bold">{review.userId.name}</span>
+                        <span className="ms-2 text-warning">{'★'.repeat(review.rating)}</span>
+                      </div>
                     </div>
+                    <p>{review.reviewText}</p>
                   </div>
-                  <p>{review.reviewText}</p>
-                </div>
-              ))
+                ))}
+                <RatingChart reviews={reviews} />
+              </>
             )}
           </div>
         </div>

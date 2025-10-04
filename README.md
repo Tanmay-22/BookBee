@@ -11,12 +11,17 @@ A full-stack MERN application for book reviews with user authentication, CRUD op
 - Average rating calculation
 - Protected routes
 - Responsive design with Bootstrap
+- **Search & Filter**: Search books by title/author, filter by genre
+- **Sorting**: Sort books by published year or average rating
+- **Charts**: Rating distribution visualization using Recharts
+- **Dark/Light Mode**: Theme toggle with persistent preference
+- **Postman Collection**: Complete API testing collection included
 
 ## Tech Stack
 
 - **Frontend**: React, React Router, Axios, Bootstrap
 - **Backend**: Node.js, Express, MongoDB, Mongoose
-- **Authentication**: JWT, bcryptjs
+- **Authentication**: JWT, bcrypt
 - **Database**: MongoDB Atlas
 
 ## Setup Instructions
@@ -24,23 +29,27 @@ A full-stack MERN application for book reviews with user authentication, CRUD op
 ### Backend Setup
 
 1. Navigate to backend directory:
+
 ```bash
 cd backend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create `.env` file and add:
+
 ```
-MONGODB_URI=your_mongodb_atlas_connection_string
-JWT_SECRET=your_jwt_secret_key
+MONGODB_URI=mongodb_atlas_connection_string
+JWT_SECRET=jwt_secret_key
 PORT=5000
 ```
 
 4. Start the server:
+
 ```bash
 npm run dev
 ```
@@ -48,16 +57,19 @@ npm run dev
 ### Frontend Setup
 
 1. Navigate to frontend directory:
+
 ```bash
 cd frontend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm start
 ```
@@ -65,10 +77,12 @@ npm start
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/signup` - Register new user
 - `POST /api/auth/login` - Login user
 
 ### Books
+
 - `GET /api/books?page=1` - Get books with pagination
 - `GET /api/books/:id` - Get book details with reviews
 - `POST /api/books` - Add new book (protected)
@@ -76,6 +90,7 @@ npm start
 - `DELETE /api/books/:id` - Delete book (protected, owner only)
 
 ### Reviews
+
 - `POST /api/reviews` - Add review (protected)
 - `PUT /api/reviews/:id` - Update review (protected, owner only)
 - `DELETE /api/reviews/:id` - Delete review (protected, owner only)
@@ -83,6 +98,7 @@ npm start
 ## Database Schema
 
 ### User
+
 ```javascript
 {
   name: String,
@@ -92,6 +108,7 @@ npm start
 ```
 
 ### Book
+
 ```javascript
 {
   title: String,
@@ -104,6 +121,7 @@ npm start
 ```
 
 ### Review
+
 ```javascript
 {
   bookId: ObjectId (Book reference),
@@ -122,6 +140,16 @@ npm start
 5. Leave reviews and ratings for books
 6. Edit/delete your own books and reviews
 
+## Bonus Features
+
+- **Search & Filter**: Real-time search by title/author with genre filtering
+- **Sorting**: Sort by publication year or average rating
+- **Rating Charts**: Visual rating distribution using Recharts
+- **Theme Toggle**: Dark/light mode with localStorage persistence
+- **Responsive Design**: Mobile-friendly navbar and layouts
+- **Postman Collection**: Complete API testing suite
+- **Deployment Ready**: Guides for Render/Vercel deployment
+
 ## Project Structure
 
 ```
@@ -131,11 +159,13 @@ BookBee/
 │   ├── routes/
 │   ├── middleware/
 │   └── server.js
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   ├── pages/
-    │   ├── context/
-    │   └── utils/
-    └── public/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── context/
+│   │   └── utils/
+│   └── public/
+├── BookBee_API.postman_collection.json
+└── DEPLOYMENT.md
 ```

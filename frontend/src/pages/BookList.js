@@ -6,9 +6,14 @@ import { booksAPI } from '../utils/api';
 const BookList = () => {
   const { user } = useAuth();
   const [books, setBooks] = useState([]);
+  const [allBooks, setAllBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [genreFilter, setGenreFilter] = useState('');
+  const [sortBy, setSortBy] = useState('');
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     fetchBooks(currentPage);
@@ -17,15 +22,40 @@ const BookList = () => {
   const fetchBooks = async (page) => {
     try {
       const { data } = await booksAPI.getBooks(page);
+      setAllBooks(data.books);
       setBooks(data.books);
       setTotalPages(data.totalPages);
       setCurrentPage(data.currentPage);
+      
+      const uniqueGenres = [...new Set(data.books.map(book => book.genre))];
+      setGenres(uniqueGenres);
     } catch (error) {
       console.error('Error fetching books:', error);
     } finally {
       setLoading(false);
     }
   };
+
+  const filterAndSortBooks = () => {
+    let filtered = allBooks.filter(book => {
+      const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           book.author.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesGenre = !genreFilter || book.genre === genreFilter;
+      return matchesSearch && matchesGenre;
+    });
+
+    if (sortBy === 'year') {
+      filtered.sort((a, b) => b.year - a.year);
+    } else if (sortBy === 'rating') {
+      filtered.sort((a, b) => (b.avgRating || 0) - (a.avgRating || 0));
+    }
+
+    setBooks(filtered);
+  };
+
+  useEffect(() => {
+    filterAndSortBooks();
+  }, [searchTerm, genreFilter, sortBy, allBooks]);
 
   if (loading) return <div className="text-center mt-5">Loading...</div>;
 
@@ -38,6 +68,41 @@ const BookList = () => {
             +
           </Link>
         )}
+      </div>
+      
+      <div className="row mb-4">
+        <div className="col-md-4">
+          <input
+            type="text"
+            placeholder="Search by title or author..."
+            className="form-control retro-input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="col-md-3">
+          <select
+            className="form-select retro-input"
+            value={genreFilter}
+            onChange={(e) => setGenreFilter(e.target.value)}
+          >
+            <option value="">All Genres</option>
+            {genres.map(genre => (
+              <option key={genre} value={genre}>{genre}</option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-3">
+          <select
+            className="form-select retro-input"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="">Sort By</option>
+            <option value="year">Published Year</option>
+            <option value="rating">Average Rating</option>
+          </select>
+        </div>
       </div>
       <div className="row">
         {books.map((book) => (
