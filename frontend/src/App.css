@@ -1,0 +1,162 @@
+body {
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+}
+
+.dark-theme {
+  background: #0a0a0a;
+  color: #00ff00;
+  min-height: 100vh;
+}
+
+.light-theme {
+  background: #f8f9fa;
+  color: #333;
+  min-height: 100vh;
+}
+
+.dark-theme .retro-card {
+  background: #1a1a1a;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.light-theme .retro-card {
+  background: #fff;
+  border: 2px solid #007bff;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+.dark-theme .retro-btn {
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.light-theme .retro-btn {
+  background: #fff;
+  border: 2px solid #007bff;
+  color: #007bff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dark-theme .retro-btn:hover {
+  background: #00ff00;
+  color: #000;
+}
+
+.light-theme .retro-btn:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.dark-theme .retro-navbar {
+  background: #000 !important;
+  border-bottom: 3px solid #00ff00;
+}
+
+.light-theme .retro-navbar {
+  background: #007bff !important;
+  border-bottom: 3px solid #0056b3;
+}
+
+.light-theme .navbar-brand,
+.light-theme .nav-link {
+  color: #000 !important;
+}
+
+.dark-theme .retro-input {
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #fff;
+}
+
+.light-theme .retro-input {
+  background: #fff;
+  border: 2px solid #007bff;
+  color: #333;
+}
+
+.dark-theme .retro-input:focus {
+  background: #000;
+  border-color: #00ff00;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.dark-theme .retro-input::placeholder {
+  color: #fff;
+}
+
+.dark-theme .retro-card .card-title,
+.dark-theme .retro-card .card-text,
+.dark-theme .retro-card .text-muted,
+.dark-theme .retro-card p,
+.dark-theme .retro-card h3,
+.dark-theme .retro-card h5,
+.dark-theme .retro-card span,
+.dark-theme .retro-card .form-label {
+  color: #fff !important;
+}
+
+.light-theme .page-link {
+  background: #fff;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+.light-theme .page-item.active .page-link {
+  background: #007bff;
+  color: #fff;
+}
+
+.dark-theme .page-link {
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+}
+
+.dark-theme .page-item.active .page-link {
+  background: #00ff00;
+  color: #000;
+}
+
+.book-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.9rem;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+
+.light-theme .retro-input:focus {
+  background: #fff;
+  border-color: #007bff;
+  color: #333;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.dark-theme .retro-title {
+  color: #00ff00;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.light-theme .retro-title {
+  color: #007bff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
